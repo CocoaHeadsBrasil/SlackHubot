@@ -32,7 +32,7 @@ module.exports = (robot) ->
         catch err
           msg.reply "Hã? Cuma? O que? Não consegui pegar as agendas! :rage:"
 
-  robot.respond /quantos inscritos?|quantos inscritos ?|quantas (inscricoes|inscrições)?/i, (msg) ->
+  robot.respond /.*(inscritos|inscrição|inscricao|rsvps|rsvp|confirmados).*/i, (msg) ->
     msg.http("http://www.cocoaheads.com.br/agendas/rsvps.json")
       .get() (err, res, body) ->
         try
