@@ -36,25 +36,28 @@ module.exports = (robot) ->
     msg.http("http://www.cocoaheads.com.br/agendas/rsvps.json")
       .get() (err, res, body) ->
         try
-          json = JSON.parse(body)
-          messagem = ""
-          for agenda in json
-            data = new Date(agenda.data)
-            mensagemBasica = "-> Em #{agenda.cidade} (#{data.getDate()}/#{data.getMonth()+1}/#{data.getFullYear()}), temos #{agenda.rsvp_sim} confirmados, #{agenda.rsvp_talvez} talvez"
+          if (body.length > 0)
+            json = JSON.parse(body)
+            messagem = ""
+            for agenda in json
+              data = new Date(agenda.data)
+              mensagemBasica = "-> Em #{agenda.cidade} (#{data.getDate()}/#{data.getMonth()+1}/#{data.getFullYear()}), temos #{agenda.rsvp_sim} confirmados, #{agenda.rsvp_talvez} talvez"
 
-            if agenda.rsvp_espera > 0
-              mensagemBasica += ". #{agenda.rsvp_espera} em espera"
+              if agenda.rsvp_espera > 0
+                mensagemBasica += ". #{agenda.rsvp_espera} em espera"
 
-            if agenda.rsvp_limite > 0
-              if agenda.rsvp_restante > 0
-                mensagemBasica += ". #{agenda.rsvp_restante} vagas restantes."
+              if agenda.rsvp_limite > 0
+                if agenda.rsvp_restante > 0
+                  mensagemBasica += ". #{agenda.rsvp_restante} vagas restantes."
+                else
+                  mensagemBasica += ". Vagas esgotadas :thumbsup:"
               else
-                mensagemBasica += ". Vagas esgotadas :thumbsup:"
-            else
-              mensagemBasica += ". Não existe limite de vagas."
+                mensagemBasica += ". Não existe limite de vagas."
 
-            messagem += "#{mensagemBasica}\n"
-          msg.reply messagem
+              messagem += "#{mensagemBasica}\n"
+            msg.reply messagem
+          else
+            msg.reply "Nenhum evento em vista. Que tal marcar um? :punch:"
         catch err
           msg.reply "#{err} Hã? Cuma? O que? Não consegui pegar as agendas! :rage:"
 
