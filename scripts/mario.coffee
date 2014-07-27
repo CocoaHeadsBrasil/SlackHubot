@@ -16,7 +16,7 @@
 # Author:
 #   ghvillasboas
 
-mario_url = "http://hubotslackchbr.herokuapp.com/images/mario.gif"
+mario_url = "http://www.cocoaheads.com.br/assets/mario.gif"
 
 module.exports = (robot) ->
   robot.hear /\\m\//i, (msg) ->
