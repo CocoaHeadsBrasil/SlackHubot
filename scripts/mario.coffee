@@ -16,7 +16,7 @@
 # Author:
 #   ghvillasboas
 
-mario_url = "http://www.cocoaheads.com.br/assets/mario.gif"
+mario_url = "https://files.slack.com/files-pri/T02AHPE34-F02EECNSE/mario.gif"
 
 module.exports = (robot) ->
   robot.hear /\\m\//i, (msg) ->
