@@ -25,7 +25,7 @@ module.exports = (robot) ->
     query = querystring.parse(url.parse(req.url).query)
 
     user = {}
-    user.room = "#hubottest"
+    user.room = "#random"
 
     username = query.username if query.username
 
@@ -41,7 +41,7 @@ module.exports = (robot) ->
       "Hããã?. :dizzy_face:"
     ]
 
-    propaganda = if ~~(Math.random() * (100 + 1)) % 2 == 0 then "A propósito, meu YO é HUBOTCOCOAHEADS :smirk:" else ""
+    propaganda = if ~~(Math.random() * (100 + 1)) % 2 == 0 then "A propósito, meu YO é HUBOTCOCOAHEADS, bitch! :smirk:" else ""
 
     try
        robot.send user, "#{random emocao_hubot} Acabei de receber um YO de #{username}! #{propaganda}"
