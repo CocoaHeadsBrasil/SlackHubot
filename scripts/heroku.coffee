@@ -3,9 +3,7 @@ querystring = require('querystring')
 
 module.exports = (robot) ->
 
-  robot.router.post "/flybot/message", (req, res) ->
-    console.log "------------"
-    console.log req.body
+  robot.router.post "/post/heroku", (req, res) ->
 
     query = querystring.parse(req.query)
     heroku_app = req.body.app
@@ -19,9 +17,9 @@ module.exports = (robot) ->
     user.room = "#hubottest"
 
     try
-       robot.send user, "INCOMING MESSAGE: #{req.body.payload} #{heroku_app} #{heroku_user} #{heroku_url} #{heroku_head} #{heroku_head_long #{heroku_git_log}}"
+       robot.send user, "ATENÇÃO: Novo deploy no website #{heroku_url}: #{heroku_git_log}"
 
-       res.end "message sent: #{query.message}"
+       res.end "message sent to channel"
 
     catch error
       console.log "message-listner error: #{error}."
