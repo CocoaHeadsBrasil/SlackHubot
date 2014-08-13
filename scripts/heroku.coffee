@@ -31,7 +31,7 @@ module.exports = (robot) ->
     heroku_git_log = req.body.git_log
 
     user = {}
-    user.room = "#hubottest"
+    user.room = "#cocoaheadsbr"
 
     emocao_hubot = [
       "YAY!",
