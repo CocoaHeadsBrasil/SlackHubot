@@ -4,6 +4,8 @@ querystring = require('querystring')
 module.exports = (robot) ->
 
   robot.router.post "/flybot/message", (req, res) ->
+    console.log req
+
     query = querystring.parse(req.query)
     heroku_app = req.query.app
     heroku_user = req.query.user
@@ -16,7 +18,7 @@ module.exports = (robot) ->
     user.room = "#hubottest"
 
     try
-       robot.send user, "INCOMING MESSAGE: #{heroku_app} #{heroku_user} #{heroku_url} #{heroku_head} #{heroku_head_long #{heroku_git_log}}"
+       robot.send user, "INCOMING MESSAGE: #{req.body.payload} #{heroku_app} #{heroku_user} #{heroku_url} #{heroku_head} #{heroku_head_long #{heroku_git_log}}"
 
        res.end "message sent: #{query.message}"
 
