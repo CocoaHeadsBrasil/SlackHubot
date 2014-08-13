@@ -5,15 +5,15 @@ module.exports = (robot) ->
 
   robot.router.post "/flybot/message", (req, res) ->
     console.log "------------"
-    console.log req
+    console.log req.body
 
     query = querystring.parse(req.query)
-    heroku_app = res.body.app
-    heroku_user = res.body.user
-    heroku_url = res.body.url
-    heroku_head = res.body.head
-    heroku_head_long = res.body.head_long
-    heroku_git_log = res.body.git_log
+    heroku_app = req.body.app
+    heroku_user = req.body.user
+    heroku_url = req.body.url
+    heroku_head = req.body.head
+    heroku_head_long = req.body.head_long
+    heroku_git_log = req.body.git_log
 
     user = {}
     user.room = "#hubottest"
