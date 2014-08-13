@@ -4,17 +4,16 @@ querystring = require('querystring')
 module.exports = (robot) ->
 
   robot.router.post "/flybot/message", (req, res) ->
-    console.log req
-    console.log "------------"
-    console.log res
+	console.log "------------"
+    console.log res.body
 
     query = querystring.parse(req.query)
-    heroku_app = req.query.app
-    heroku_user = req.query.user
-    heroku_url = req.query.url
-    heroku_head = req.query.head
-    heroku_head_long = req.query.head_long
-    heroku_git_log = req.query.git_log
+    heroku_app = res.body.app
+    heroku_user = res.body.user
+    heroku_url = res.body.url
+    heroku_head = res.body.head
+    heroku_head_long = res.body.head_long
+    heroku_git_log = res.body.git_log
 
     user = {}
     user.room = "#hubottest"
