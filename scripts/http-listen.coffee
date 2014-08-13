@@ -12,12 +12,14 @@ module.exports = (robot) ->
     heroku_head_long = req.query.head_long
     heroku_git_log = req.query.git_log
 
+    user = req.query.user
+    user = {}
     user.room = "hubottest"
 
     try
        robot.send user, "INCOMING MESSAGE: #{heroku_app} #{heroku_user} #{heroku_url} #{heroku_head} #{heroku_head_long #{heroku_git_log}}"
 
-       res.end "message sent"
+       res.end "message sent: #{query.message}"
 
     catch error
       console.log "message-listner error: #{error}."
