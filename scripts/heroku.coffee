@@ -1,9 +1,26 @@
+# Description
+#   Accepts a heroku hook and posts to channel
+#
+# Dependencies:
+#   none
+#
+# Configuration:
+#
+# Commands:
+#   via POST [URL]/post/heroku/website
+#
+# Notes:
+#   
+#
+# Author:
+#   ghvillasboas (based on Artsy Editorial work)
+
 url = require('url')
 querystring = require('querystring')
 
 module.exports = (robot) ->
 
-  robot.router.post "/post/heroku", (req, res) ->
+  robot.router.post "/post/heroku/website", (req, res) ->
 
     query = querystring.parse(req.query)
     heroku_app = req.body.app
@@ -16,10 +33,31 @@ module.exports = (robot) ->
     user = {}
     user.room = "#hubottest"
 
+    emocao_hubot = [
+      "YAY!",
+      "YES!",
+      "OBA!",
+      "EBA!",
+      "WOW!"
+    ]
+
     try
-       robot.send user, "ATENÇÃO: Novo deploy no website #{heroku_url}: #{heroku_git_log}"
+       robot.send user, "#{random emocao_hubot} Novo deploy no website do CocoaHeadsBR: #{heroku_git_log}"
 
        res.end "message sent to channel"
 
     catch error
       console.log "message-listner error: #{error}."
+
+shuffle = (a) ->
+  i = a.length
+  while --i > 0
+    j = ~~(Math.random() * (i + 1)) # ~~ is a common optimization for Math.floor
+    t = a[j]
+    a[j] = a[i]
+    a[i] = t
+  a
+
+random = (a) ->
+  a = shuffle(a)
+  a[0]
