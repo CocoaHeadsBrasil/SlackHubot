@@ -5,6 +5,8 @@ module.exports = (robot) ->
 
   robot.router.post "/flybot/message", (req, res) ->
     console.log req
+    console.log "------------"
+    console.log res
 
     query = querystring.parse(req.query)
     heroku_app = req.query.app
