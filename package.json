@@ -29,7 +29,6 @@
     "big-integer": "1.1.5",
     "googleanalytics":"0.3.6",
     "date-utils": ">=1.2.5"
-
   },
   "engines": {
     "node": ">= 0.8.x",

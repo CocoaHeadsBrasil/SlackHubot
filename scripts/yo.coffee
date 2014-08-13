@@ -2,7 +2,7 @@
 #   Posts on channel everytime a YO is received
 #
 # Dependencies:
-#   none
+#   yo-api
 #
 # Configuration:
 #
@@ -15,12 +15,15 @@
 # Author:
 #   ghvillasboas (based on Artsy Editorial work)
 
-url = require('url')
-querystring = require('querystring')
+url = require 'url'
+http = require 'http'
+querystring = require 'querystring'
+request = require('request');
 
 module.exports = (robot) ->
 
   robot.router.get "/get/yo", (req, res) ->
+    token = process.env.HUBOT_YO_API_TOKEN
 
     query = querystring.parse(url.parse(req.url).query)
 
@@ -44,9 +47,17 @@ module.exports = (robot) ->
     propaganda = if ~~(Math.random() * (100 + 1)) % 2 == 0 then "A propósito, meu YO é HUBOTCOCOAHEADS, bitch! :smirk:" else ""
 
     try
-       robot.send user, "#{random emocao_hubot} Acabei de receber um YO de #{username}! #{propaganda}"
+      robot.send user, "#{random emocao_hubot} Acabei de receber um YO de #{username}! #{propaganda}"
 
-       res.end "message sent to channel"
+      delay 10000, -> 
+        request.post "http://api.justyo.co/yo/",
+          form:
+            "username": username
+            "api_token": token
+          (error, response, body) ->
+            console.log body if not error and response.statusCode is 200
+
+      res.end "message sent to channel"
 
     catch error
       console.log "message-listner error: #{error}."
@@ -63,3 +74,5 @@ shuffle = (a) ->
 random = (a) ->
   a = shuffle(a)
   a[0]
+
+delay = (ms, func) -> setTimeout func, ms
