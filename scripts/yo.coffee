@@ -41,7 +41,8 @@ module.exports = (robot) ->
       "Que milagre! :confounded:",
       "Que chato :triumph:!",
       "Afffff. :rage:",
-      "Hããã?. :dizzy_face:"
+      "Hããã?. :dizzy_face:",
+      "Yo Mr. White! It's Science bitch. :dollar::dollar::dollar:",
     ]
 
     propaganda = if ~~(Math.random() * (100 + 1)) % 2 == 0 then "A propósito, meu YO é HUBOTCOCOAHEADS, bitch! :smirk:" else ""
@@ -61,6 +62,20 @@ module.exports = (robot) ->
 
     catch error
       console.log "message-listner error: #{error}."
+
+  robot.respond /.*(yo|y0).*/i, (msg) ->
+    respostas = [
+      "Meu yo é HUBOTCOCOAHEADS, mas não abuse.",
+      "HUBOTCOCOAHEADS",
+      "Da parte de quem?",
+      "Pq o interesse?",
+      "hum... hum... esqueci.",
+      "É HUBOTCOCOAHEADS. O primeiro hubot a ter yo. :wink:",
+      "O que é yo?",
+      "É HUBOTCOCOAHEADS. Manda um que eu te respondo!"
+    ]
+    msg.reply "#{msg.random respostas}"
+
 
 shuffle = (a) ->
   i = a.length
