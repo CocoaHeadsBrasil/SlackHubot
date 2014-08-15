@@ -7,7 +7,7 @@
 # Configuration:
 #
 # Commands:
-#   via POST [URL]/post/heroku/website
+#   Posta uma mensagem ao fazer um novo deploy do website do CH
 #
 # Notes:
 #   

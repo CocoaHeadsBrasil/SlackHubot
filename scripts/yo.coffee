@@ -7,7 +7,7 @@
 # Configuration:
 #
 # Commands:
-#   via POST [URL]/get/yo
+#   Interação via yo. Mande um yo para HUBOTCOCOAHEADS ou pergunta: hubot qual é seu yo?
 #
 # Notes:
 #   
