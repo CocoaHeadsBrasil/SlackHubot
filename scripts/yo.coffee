@@ -37,7 +37,7 @@ module.exports = (robot) ->
       "Que meigo! :kiss:",
       "Oba! :grin:",
       "Olha só! :stuck_out_tongue_winking_eye:",
-      "Abacadabra! :collision:",
+      "Abracadabra! :collision:",
       "Que milagre! :confounded:",
       "Que chato :triumph:!",
       "Afffff. :rage:",
