@@ -2,7 +2,7 @@
 #   Posts on channel everytime a YO is received
 #
 # Dependencies:
-#   yo-api
+#   none
 #
 # Configuration:
 #
@@ -13,7 +13,7 @@
 #   
 #
 # Author:
-#   ghvillasboas (based on Artsy Editorial work)
+#   ghvillasboas
 
 url = require 'url'
 http = require 'http'
