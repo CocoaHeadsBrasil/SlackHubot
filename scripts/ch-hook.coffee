@@ -23,14 +23,14 @@ module.exports = (robot) ->
   robot.router.post "/post/chbr/website", (req, res) ->
 
     query = querystring.parse(req.query)
-    web_channel = req.body.channel
+    web_channel = if req.body.channel? then req.body.channel else "#hubottest"
     web_message = req.body.message
+    web_mood = if req.body.mood? then req.body.mood else 'good'
 
     user = {}
-    # user.room = if web_channel then "##{web_channel}" else "#hubottest"
-    user.room = "#hubottest"
+    user.room = web_channel
 
-    emocao_hubot = [
+    good_mood_hubot = [
       "YAY!",
       "YES!",
       "OBA!",
@@ -40,8 +40,23 @@ module.exports = (robot) ->
       'Rádio Hubot innnnforma!'
     ]
 
+    bad_mood_hubot = [
+      "PUTZ!",
+      "NOOOOOO!",
+      "Ahhhh!",
+      "NÃO!",
+      "OH NÃO!",
+      "Nananinanã!",
+      "Babado!"
+    ]
+
+    mood = if web_mood == 'bad' then bad_mood_hubot else good_mood_hubot
+
     try
-        robot.send user, "#{random emocao_hubot} #{web_message}"
+        if web_mood != 'none'
+          robot.send user, "#{random mood} #{web_message}"
+        else
+          robot.send user, "#{web_message}"
         res.end "message sent to channel"
 
     catch error
