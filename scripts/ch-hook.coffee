@@ -28,7 +28,7 @@ module.exports = (robot) ->
     web_mood = if req.body.mood? then req.body.mood else 'good'
 
     user = {}
-    user.room = "#hubottest"
+    user.room = web_channel
 
     good_mood_hubot = [
       "YAY!",
